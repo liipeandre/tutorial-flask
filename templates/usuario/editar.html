@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Página inicial</title>
+    </head>
+    <body>
+        <form method="post" action="">
+            <label hidden>
+                <input hidden type="text" name="id" value="{{ usuario.id }}">
+            </label>
+            <label>
+                Nome: <input type="text" name="nome" value="{{ usuario.nome }}">
+            </label>
+            <label> 
+                Idade: <input type="number" name="idade" value="{{ usuario.idade }}">
+            </label>
+            <button type="submit">Alterar Cadastro</button>
+        </form>
+    </body>
+</html>

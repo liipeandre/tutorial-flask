@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Página inicial</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>
+                      {{ message }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Usuário</th>
+                <th>Idade</th>
+            </tr>
+            {% if usuarios %}
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td> {{ usuario.id }} </td>
+                        <td> {{ usuario.nome }} </td>
+                        <td> {{ usuario.idade }} </td>
+                        <td><a href="{{ url_for('usuario.editar', id=usuario.id) }}">Editar</a></td>
+                        <td><a href="{{ url_for('usuario.deletar', id=usuario.id) }}">Deletar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr> Nenhum usuário cadastrado </tr>
+            {% endif %}
+        </table>
+    </body>
+</html>

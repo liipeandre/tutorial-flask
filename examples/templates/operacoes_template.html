@@ -1,0 +1,35 @@
+<!-- Importar outros templates -->
+{% include 'common/arquivo.html' %}
+
+
+<!-- Importar arquivos CSS e JS em um template -->
+<link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+
+<!-- Ler mensagens de erro -->
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+		  {{ message }}
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+
+
+<!-- Ler dados vindos da view -->
+{% for produto in produtos %}
+	<tr>
+		<td> {{ produto.nome }} </td>
+		<td> {{ produto.quantidade }} </td>
+		<td> {{ produto.categoria }} </td>
+	</tr>
+{% endfor %}
+
+
+<!-- Redirecionar para uma URL (usando o endpoint) -->
+<a href="{{ url_for('produto.edit') }}"></a>
+
+
+<!-- Redirecionar para uma URL (usando o endpoint), passando o parâmetro 'produto.idproduto' via GET -->
+<a href="{{ url_for('produto.edit', idproduto=produto.idproduto) }}"></a>
