@@ -8,7 +8,7 @@ class Usuario(database.Model):
 
     # TODO: Colocar as colunas do banco de dados e as constraints delas.
 
-    id = database.Column(
+    id_usuario = database.Column(
         database.Integer,
         primary_key=True
     )
@@ -22,5 +22,3 @@ class Usuario(database.Model):
         database.Integer,
         nullable=False
     )
-
-    # TODO: Implementar abaixo as operações de manipulação do banco de dados. Chamá-las através da view.

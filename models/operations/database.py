@@ -1,14 +1,27 @@
+from sqlalchemy.exc import SQLAlchemyError
+
 from database import database
 
 
 # TODO: As principais operações do banco de dados, dentro de um model são as abaixo.
 
 def begin_transaction():
-    database.session.begin()
+    try:
+        database.session.begin()
+        return True
+
+    except SQLAlchemyError:
+        return False
 
 
 def commit():
-    database.session.commit()
+    try:
+        database.session.begin()
+        return True
+
+    except SQLAlchemyError:
+        rollback()
+        return False
 
 
 def rollback():

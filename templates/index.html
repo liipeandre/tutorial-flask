@@ -15,13 +15,16 @@
             {% endif %}
         {% endwith %}
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nome do Usuário</th>
-                <th>Idade</th>
-            </tr>
-            {% if usuarios %}
+        <button href="{{ url_for('usuario.inserir') }}">Adicionar Novo Usuário</button>
+
+        {% if usuarios %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Usuário</th>
+                    <th>Idade</th>
+                </tr>
+
                 {% for usuario in usuarios %}
                     <tr>
                         <td> {{ usuario.id }} </td>
@@ -31,9 +34,12 @@
                         <td><a href="{{ url_for('usuario.deletar', id=usuario.id) }}">Deletar</a></td>
                     </tr>
                 {% endfor %}
-            {% else %}
-                <tr> Nenhum usuário cadastrado </tr>
-            {% endif %}
-        </table>
+
+            </table>
+
+        {% else %}
+            <p> Nenhum usuário cadastrado </p>
+        {% endif %}
+
     </body>
 </html>
