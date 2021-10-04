@@ -2,7 +2,7 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8"/>
-        <title>Página inicial</title>
+        <title>Lista de Usuários</title>
     </head>
     <body>
         {% with messages = get_flashed_messages() %}
@@ -15,7 +15,7 @@
             {% endif %}
         {% endwith %}
 
-        <button href="{{ url_for('usuario.inserir') }}">Adicionar Novo Usuário</button>
+        <button onclick="location.href='{{ url_for('usuario.inserir') }}'">Adicionar Novo Usuário</button>
 
         {% if usuarios %}
             <table>
@@ -27,11 +27,11 @@
 
                 {% for usuario in usuarios %}
                     <tr>
-                        <td> {{ usuario.id }} </td>
+                        <td> {{ usuario.id_usuario }} </td>
                         <td> {{ usuario.nome }} </td>
                         <td> {{ usuario.idade }} </td>
-                        <td><a href="{{ url_for('usuario.editar', id=usuario.id) }}">Editar</a></td>
-                        <td><a href="{{ url_for('usuario.deletar', id=usuario.id) }}">Deletar</a></td>
+                        <td><a href="{{ url_for('usuario.editar', id_usuario=usuario.id_usuario) }}">Editar</a></td>
+                        <td><a href="{{ url_for('usuario.deletar', id_usuario=usuario.id_usuario) }}">Deletar</a></td>
                     </tr>
                 {% endfor %}
 

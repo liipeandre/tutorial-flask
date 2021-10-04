@@ -1,122 +1,113 @@
 from app import app
+from database import commit
 from flask import render_template, request, flash, redirect, url_for
 
 from models.Usuario import Usuario
-
-from models.operations import crud, database
 
 
 @app.route('/usuario/inserir', methods=['GET', 'POST'], endpoint='usuario.inserir')
 def inserir():
     if request.method == 'GET':
-        return render_template('usuario/cadastrar.html')
+        return render_template('usuario/inserir.html')
 
     else:
-        nome = request.form.get('nome', '')
-        idade = request.form.get('idade', '')
+        usuario = Usuario(
+            nome=request.form.get('nome', ''),
+            idade=request.form.get('idade', '')
+        )
 
-        if not nome or len(nome) > 40:
+        if not usuario.nome or len(usuario.nome) > 40:
             flash("Campo 'nome' é obrigatório e deve ter no máximo 40 caracteres.")
 
-        elif not idade or not idade.isdigit() or int(idade) < 0:
+        elif not usuario.idade or not usuario.idade.isdigit() or int(usuario.idade) < 0:
             flash("Campo 'idade' é obrigatório e deve ser numérico.")
 
+        elif not (usuario.inserir() and commit()):
+            flash('Erro ao inserir usuário.')
+
         else:
-            database.begin_transaction()
+            flash('Usuário criado com sucesso.')
+            return redirect(url_for('usuario.listar'))
 
-            usuario = Usuario()
-
-            if crud.insert(usuario) and database.commit():
-                flash('Usuário criado com sucesso.')
-
-            else:
-                flash('Erro ao inserir usuário.')
-
-        return redirect(url_for('usuario.list'))
+        return redirect(url_for('usuario.inserir'))
 
 
 @app.route('/usuario/deletar', methods=['GET'], endpoint='usuario.deletar')
 def deletar():
-    id_usuario = request.form.get('id_usuario', '')
+    usuario = Usuario(
+        id_usuario=request.values.get('id_usuario', ''),
+    )
 
-    if not id_usuario or not id_usuario.isdigit() or int(id_usuario) < 0:
-            flash("Campo 'id_usuario' é obrigatório e deve ser numérico.")
+    if not usuario.id_usuario or not usuario.id_usuario.isdigit() or int(usuario.id_usuario) < 0:
+        flash("Campo 'id_usuario' é obrigatório e deve ser numérico.")
+
+    elif not (usuario.deletar() and commit()):
+        flash('Erro ao excluir usuário.')
 
     else:
-        database.begin_transaction()
+        flash('Usuário excluído com sucesso.')
 
-        usuario = Usuario()
-        usuario.id_usuario = id_usuario
-
-        if crud.delete(usuario) and database.commit():
-            flash('Usuário excluído com sucesso.')
-
-        else:
-            flash('Erro ao excluir usuário.')
-
-    return redirect(url_for('usuario.list'))
+    return redirect(url_for('usuario.listar'))
 
 
 @app.route('/', methods=['GET'], endpoint='usuario.listar')
 def listar():
     usuario = Usuario()
-    usuarios = crud.list(usuario)
+    success, usuarios = usuario.listar()
 
-    if usuarios is None:
+    if not usuarios:
         flash('Erro ao listar usuários.')
-        usuarios = []
 
     return render_template('index.html', usuarios=usuarios)
 
 
 @app.route('/usuario/visualizar', methods=['GET'], endpoint='usuario.visualizar')
 def visualizar():
-    id_usuario = request.form.get('id_usuario', '')
+    usuario = Usuario(
+        id_usuario=request.values.get('id_usuario', ''),
+    )
 
-    if not id_usuario or not id_usuario.isdigit() or int(id_usuario) < 0:
+    if not usuario.id_usuario or not usuario.id_usuario.isdigit() or int(usuario.id_usuario) < 0:
         flash("Campo 'id_usuario' é obrigatório e deve ser numérico.")
 
     else:
-        usuario = Usuario()
-        usuario = crud.view(usuario, id_usuario)
+        success, usuario = usuario.visualizar()
 
-        if usuario is None:
-            usuario = []
+        if not usuario:
             flash('Erro ao selecionar usuário.')
 
-        return render_template('usuario/editar.html', usuario=usuario)
+        else:
+            return render_template('usuario/editar.html', usuario=usuario.first())
 
-    return redirect(url_for('usuario.list'))
+    return redirect(url_for('usuario.listar'))
 
 
 @app.route('/usuario/editar', methods=['GET', 'POST'], endpoint='usuario.editar')
 def editar():
     if request.method == 'GET':
-        visualizar()
+        return visualizar()
 
     else:
-        id_usuario = request.form.get('id_usuario', '')
-        nome = request.form.get('nome', '')
-        idade = request.form.get('idade', '')
+        usuario = Usuario(
+            id_usuario=request.values.get('id_usuario', ''),
+            nome=request.form.get('nome', ''),
+            idade=request.form.get('idade', '')
+        )
 
-        if not id_usuario or not id_usuario.isdigit() or int(id_usuario) < 0:
+        if not usuario.id_usuario or not usuario.id_usuario.isdigit() or int(usuario.id_usuario) < 0:
             flash("Campo 'id_usuario' é obrigatório e deve ser numérico.")
 
-        elif not nome or len(nome) > 40:
+        elif not usuario.nome or len(usuario.nome) > 40:
             flash("Campo 'nome' é obrigatório e deve ter no máximo 40 caracteres.")
 
-        elif not idade or not idade.isdigit() or int(idade) < 0:
+        elif not usuario.idade or not usuario.idade.isdigit() or int(usuario.idade) < 0:
             flash("Campo 'idade' é obrigatório e deve ser numérico.")
 
+        elif not (usuario.editar() and commit()):
+            flash('Erro ao alterar usuário.')
+
         else:
-            database.begin_transaction()
+            flash('Usuário alterado com sucesso.')
+            return render_template('usuario/editar.html', usuario=request.form)
 
-            usuario = Usuario()
-
-            if crud.edit(usuario, request.form) and database.commit():
-                flash('Usuário alterado com sucesso.')
-                return redirect(url_for('usuario.list'))
-
-            else:
-                flash('Erro ao alterar usuário.')
-                return render_template('usuario/editar.html', usuario=request.form)
+        return redirect(url_for('usuario.listar'))

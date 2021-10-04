@@ -17,9 +17,8 @@
 /* Add table "usuario"                                                    */
 /* ---------------------------------------------------------------------- */
 
-CREATE TABLE "usuario" (
-    "id_usuario" INTEGER NOT NULL,
-    "nome" TEXT NOT NULL,
-    "idade" INTEGER NOT NULL,
-    CONSTRAINT "PK_usuario" PRIMARY KEY ("id_usuario")
-);
+CREATE TABLE usuario ( 
+	id_usuario integer NOT NULL  PRIMARY KEY autoincrement ,
+	nome text NOT NULL    ,
+	idade integer NOT NULL    
+ );

@@ -3,6 +3,7 @@ from app import app
 
 from flask_sqlalchemy import SQLAlchemy
 
+
 def get_connection():
     file_dir = getcwd()
 
@@ -17,6 +18,29 @@ def get_connection():
     database = SQLAlchemy(app)
 
     return database
+
+
+def execute_sql_query(query: str, parameters: dict):
+    try:
+        data = database.session.execute(query, parameters)
+        return True, data
+
+    except Exception as exception:
+        return False, []
+
+
+def commit():
+    try:
+        database.session.commit()
+        return True
+
+    except Exception as exception:
+        rollback()
+        return False
+
+
+def rollback():
+    database.session.rollback()
 
 
 database = get_connection()

@@ -2,7 +2,7 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8"/>
-        <title>Editar Usuário</title>
+        <title>Inserir Usuário</title>
     </head>
     <body>
         {% with messages = get_flashed_messages() %}
@@ -15,14 +15,14 @@
             {% endif %}
         {% endwith %}
 
-        <form method="post" action="{{ url_for('usuario.editar', id_usuario=usuario.id_usuario) }}">
-            <label>
-                Nome: <input type="text" name="nome" value="{{ usuario.nome }}">
+        <form method="post" action="{{ url_for('usuario.inserir') }}">
+            <label> 
+                Nome: <input type="text" name="nome">
             </label>
             <label> 
-                Idade: <input type="number" name="idade" value="{{ usuario.idade }}">
+                Idade: <input type="text" name="idade">
             </label>
-            <button type="submit">Alterar Cadastro</button>
+            <button type="submit">Criar Usuário</button>
         </form>
     </body>
 </html>
