@@ -1,10 +1,11 @@
-# Tutorial de Flask
+# Flask Tutorial
 
-## Autor
+## Author
 
 - André Felipe Pereira dos Santos
 
-## Descrição
+## Description
 
-Esse projeto é apenas um tutorial básico de como desenvolver uma aplicação web simples usando Python e Flask. Nesse projeto,
-foi desenvolvido um CRUD básico com um banco de dados SQLite.
+This project is just a basic tutorial on how to develop a simple web application using Python and Flask. In this project,
+a basic CRUD was developed with an SQLite database.
+
