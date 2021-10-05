@@ -2,12 +2,6 @@ from database import database, execute_sql_query
 
 
 class Usuario(database.Model):
-    # TODO: Colocar o nome da tabela do banco de dados.
-
-    table_name = 'usuario'
-
-    # TODO: Colocar as colunas do banco de dados e as constraints delas.
-
     id_usuario = database.Column(
         database.Integer,
         primary_key=True
@@ -28,7 +22,6 @@ class Usuario(database.Model):
             insert into usuario (nome, idade)
             values (:nome, :idade);
         """
-
         return execute_sql_query(query, self.__dict__)
 
     def deletar(self):

@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c93d342d-3326-454e-921f-a4f59bcc58b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/create_sqlite.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/create_sqlite.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/drop_sqlite.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Usuario.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/operations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/operations/crud.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/operations/database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuario/cadastrar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuario/inserir.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuario/editar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuario/editar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/usuario.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +104,8 @@
       <workItem from="1633180895328" duration="6396000" />
       <workItem from="1633192560759" duration="449000" />
       <workItem from="1633193825903" duration="5698000" />
-      <workItem from="1633378839294" duration="563000" />
+      <workItem from="1633378839294" duration="1460000" />
+      <workItem from="1633441518389" duration="463000" />
     </task>
     <servers />
   </component>
@@ -147,6 +136,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/tutorial_flask$tutorial_flask.coverage" NAME="tutorial-flask Coverage Results" MODIFIED="1628376687384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/tutorial_flask$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1633379257988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tutorial_flask$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1633441691489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
