@@ -26,6 +26,7 @@ def execute_sql_query(query: str, parameters: dict):
         return True, data
 
     except Exception as exception:
+        rollback()
         return False, []
 
 
